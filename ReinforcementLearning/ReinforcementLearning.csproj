@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cognitio.ConvNetSharp.Core" Version="0.4.14" />
+      <PackageReference Include="Cognitio.ConvNetSharp.Flow" Version="0.4.14" />
+      <PackageReference Include="Cognitio.ConvNetSharp.Volume.GPU" Version="0.4.14" />
+      <PackageReference Include="NeuralNetwork" Version="7.4.0" />
+      <PackageReference Include="NeuralNetwork.Backpropagation" Version="1.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SarsaBrain\SarsaBrain.csproj" />
+    </ItemGroup>
+
+</Project>
