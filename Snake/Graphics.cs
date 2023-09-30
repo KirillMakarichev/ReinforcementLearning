@@ -25,7 +25,7 @@ public partial class Graphics : Form
         AddPoints(errors);
     }
 
-    private int y = 0;
+    private int _y = 0;
 
     private void ConfigureChart(List<double> errors)
     {
@@ -58,9 +58,9 @@ public partial class Graphics : Form
         for (var index = 0; index < errors.Count; index++)
         {
             var error = errors[index];
-            _chart.Series[index].Points.AddXY(y, error);
+            _chart.Series[index].Points.AddXY(_y, error);
         }
 
-        y++;
+        _y++;
     }
 }

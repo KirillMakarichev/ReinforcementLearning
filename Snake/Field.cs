@@ -23,13 +23,13 @@ public class Field
 
     public static List<Pos> GetFreeCells(Field field, List<Pos> taken)
     {
-        List<Pos> freeCells = new List<Pos>();
+        var freeCells = new List<Pos>();
 
-        for (int row = 0; row < field.Height; row++)
+        for (var row = 0; row < field.Height; row++)
         {
-            for (int col = 0; col < field.Width; col++)
+            for (var col = 0; col < field.Width; col++)
             {
-                Pos cell = new Pos(row, col);
+                var cell = new Pos(row, col);
             
                 // Проверяем, является ли позиция свободной и не находится ли она в списке занятых позиций
                 if (!taken.Contains(cell))
@@ -40,5 +40,10 @@ public class Field
         }
 
         return freeCells;
+    }
+
+    public static List<Pos> GetRandomFreeCells(Field field, List<Pos> taken, int count)
+    {
+        return GetFreeCells(field, taken).OrderBy(x => Random.Shared.Next()).Take(count).ToList();
     }
 }

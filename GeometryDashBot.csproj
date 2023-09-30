@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="InputManager">
+        <HintPath>C:\Users\Kirill\Downloads\InputManagerSendingMessagesExample\InputManager Library Example2\InputManager.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GeometryDashAPI" Version="0.2.17" />
+      <PackageReference Include="InputSimulatorPlus" Version="1.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SarsaBrain\SarsaBrain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\cublas64_10.dll">
+        <Link>lib\cublas64_10.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\cublasLt64_10.dll">
+        <Link>lib\cublasLt64_10.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\cudart64_102.dll">
+        <Link>lib\cudart64_102.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\curand64_10.dll">
+        <Link>lib\curand64_10.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\cusparse64_10.dll">
+        <Link>lib\cusparse64_10.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cuda\2.7.1\support\x64\Dependency\nvml.dll">
+        <Link>lib\nvml.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.cudnn\2.7.1\support\x64\Dependency\cudnn64_7.dll">
+        <Link>lib\cudnn64_7.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.mkl\2.7.1\support\x64\Dependency\libiomp5md.dll">
+        <Link>lib\libiomp5md.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.mkl\2.7.1\support\x64\Dependency\mkldnn.dll">
+        <Link>lib\mkldnn.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.mkl\2.7.1\support\x64\Dependency\mklml.dll">
+        <Link>lib\mklml.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.opencv.zip\2.7.1\support\x64\Dependency\Release\opencv_world310.dll">
+        <Link>lib\opencv_world310.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.opencv.zip\2.7.1\support\x64\Dependency\zip.dll">
+        <Link>lib\zip.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.deps.opencv.zip\2.7.1\support\x64\Dependency\zlib.dll">
+        <Link>lib\zlib.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Composite-2.7.1.dll">
+        <Link>lib\Cntk.Composite-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Core-2.7.1.dll">
+        <Link>lib\Cntk.Core-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Core.CSBinding-2.7.1.dll">
+        <Link>lib\Cntk.Core.CSBinding-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Deserializers.Binary-2.7.1.dll">
+        <Link>lib\Cntk.Deserializers.Binary-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Deserializers.HTK-2.7.1.dll">
+        <Link>lib\Cntk.Deserializers.HTK-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Deserializers.Image-2.7.1.dll">
+        <Link>lib\Cntk.Deserializers.Image-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Deserializers.TextFormat-2.7.1.dll">
+        <Link>lib\Cntk.Deserializers.TextFormat-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.Math-2.7.1.dll">
+        <Link>lib\Cntk.Math-2.7.1.dll</Link>
+      </None>
+      <None Include="C:\Users\Kirill\.nuget\packages\nietras.cntk.gpu\2.7.1\support\x64\Release\Cntk.PerformanceProfiler-2.7.1.dll">
+        <Link>lib\Cntk.PerformanceProfiler-2.7.1.dll</Link>
+      </None>
+    </ItemGroup>
+
+</Project>

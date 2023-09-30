@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SarsaBrain\SarsaBrain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="InputManager">
+        <HintPath>D:\Documents\GitHub\ReinforcementLearning\GeometryDashBot\bin\x64\Debug\net7.0-windows\InputManager.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GeometryDashAPI" Version="0.2.17" />
+    </ItemGroup>
+
+</Project>

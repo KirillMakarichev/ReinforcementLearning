@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Timer = System.Windows.Forms.Timer;
 
@@ -14,15 +15,15 @@ public partial class Form1 : Form
     private readonly Color _snakeColor = Color.Green;
     private readonly Color _headColor = Color.OliveDrab;
     private readonly Color _foodColor = Color.Red;
-    private readonly Font _font = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Regular, GraphicsUnit.Pixel);
+    private readonly Font _font = new(FontFamily.GenericSansSerif, 12, FontStyle.Regular, GraphicsUnit.Pixel);
 
     private Timer _gameTimer;
 
     private bool _paused = false; // Variable to track the game's paused state
 
-    private Game _game;
+    private Game1 _game;
 
-    private Graphics _graphics = new Graphics();
+    private Graphics _graphics = new();
 
 // Add this method to handle the pause/resume functionality
     private void TogglePause()
@@ -42,14 +43,26 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
+
+        this.Load += OnLoad;
+        Closing += OnClosing;
+    }
+
+    private async void OnClosing(object? sender, CancelEventArgs e)
+    {
+        await _game.SaveAsync(
+            $"{DateTime.UtcNow.ToString("MM/dd/yyyy_hh_mm_ss")}_score_{_game.BrainStatistic().MaxScore}.txt");
+    }
+
+    private async void OnLoad(object? sender, EventArgs e)
+    {
         KeyDown += MainForm_KeyDown;
         KeyPress += Form1_KeyPress;
         _graphics.Show();
         // Set up the game window
         Width = 900;
         Height = 700;
-        _game = new Game(FieldWidth / BlockSize, FieldHeight / BlockSize);
-        _game.OnGameRestart += OnGameRestart;
+        _game = Factories.CreateGame(FieldWidth / BlockSize, FieldHeight / BlockSize);
         BackColor = _backgroundColor;
 
         // Set up the game timer
@@ -57,14 +70,6 @@ public partial class Form1 : Form
         _gameTimer.Interval = (int)(1000 / _snakeSpeed);
         _gameTimer.Tick += GameTick;
         _gameTimer.Start();
-    }
-
-    private void OnGameRestart(int obj)
-    {
-        // Game over
-        //_gameTimer.Stop();
-        //MessageBox.Show($"Game over! Your score: {obj - 1}");
-        //_gameTimer.Start();
     }
 
     private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -78,7 +83,7 @@ public partial class Form1 : Form
     private void SetSpeed(float speed)
     {
         this._snakeSpeed = speed;
-        float interval = 100f / speed;
+        var interval = 100f / speed;
         _gameTimer.Interval = (int)interval;
         // if (interval >= 1)
         //     frameSkip = 0;
@@ -122,14 +127,14 @@ public partial class Form1 : Form
                 return;
         }
 
-        _game.SetNextDirection(nextDirection);
+        //_game.SetNextDirection(nextDirection);
     }
 
     private void GameTick(object sender, EventArgs e)
     {
         if (_paused) return;
 
-        _game.Tick(_isPc);
+        _game.Tick(withFuturePossibleStates: false);
 
         // Refresh the game window
         Invalidate();
@@ -158,25 +163,34 @@ public partial class Form1 : Form
             e.Graphics.FillRectangle(solidBrush, foodLocation.X, foodLocation.Y, BlockSize, BlockSize);
         }
 
+        // Draw the walls
+        foreach (var wall in _game.Walls)
+        {
+            var wallLocation = Pos.ConvertFromPosToPoint(wall, BlockSize);
+            var solidBrush = new SolidBrush(Color.Gray);
+
+            e.Graphics.FillRectangle(solidBrush, wallLocation.X, wallLocation.Y, BlockSize, BlockSize);
+        }
+
         // Draw the score
-        var scoreText = $"Score: {_game.Score - 1}";
+        var scoreText = $"Score: {_game.Score}";
         e.Graphics.DrawString(scoreText, _font, Brushes.White, new Point(10, 10));
 
         var statistics = _game.BrainStatistic();
 
         var statisticsStringBuilder = new StringBuilder();
 
-        if (statistics.Sensors != null)
-        {
-            statisticsStringBuilder.AppendJoin('\n',
-                statistics.Sensors.Select((x, i) => $"{i % 8}){x} - {Pos.Dir8[i % 8]}"));
-        }
+        // if (statistics.Sensors != null)
+        // {
+        //     statisticsStringBuilder.AppendJoin('\n',
+        //         statistics.Sensors.Select((x, i) => $"{i % 8}){x} - {Pos.Dir8[i % 8]}"));
+        // }
 
         if (_game.SensorsAdditionalInfo.Any())
         {
             var dict = new Dictionary<int, Color>()
             {
-                { 0, Color.Azure }, { 1, Color.Chartreuse }, { 2, Color.Fuchsia }
+                { 0, Color.Azure }, { 1, Color.Chartreuse }, { 2, Color.Fuchsia }, { 3, Color.Teal }
             };
             foreach (var sensor in _game.SensorsAdditionalInfo)
             {
@@ -200,7 +214,7 @@ public partial class Form1 : Form
         if (statistics.QValues != null)
         {
             var max = statistics.QValues.Max();
-            for (int i = 0; i < statistics.QValues.Count; i++)
+            for (var i = 0; i < statistics.QValues.Count; i++)
             {
                 var brush = statistics.QValues[i] == max ? Brushes.Chartreuse : Brushes.White;
 
@@ -218,8 +232,8 @@ public partial class Form1 : Form
 
         e.Graphics.DrawString(statisticsStringBuilder.ToString(), _font, Brushes.White,
             new Point(_game.Field.Width * BlockSize + 10, 10));
-        
-        _graphics.AddErrors(_game.Errors);
+
+        _graphics.AddErrors(_game.ErrorsP);
     }
 
     private Point GetCenterOfBlock(Point point)

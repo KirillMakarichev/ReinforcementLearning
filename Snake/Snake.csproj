@@ -8,6 +8,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\SarsaBrain\SarsaBrain.csproj" />
     </ItemGroup>
@@ -17,6 +25,7 @@
       <PackageReference Include="NeuralNetwork.Backpropagation" Version="1.0.0" />
       <PackageReference Include="WinForms.DataVisualization" Version="1.8.0" />
     </ItemGroup>
+
 
     <ItemGroup>
       <Compile Update="Graphics.cs">

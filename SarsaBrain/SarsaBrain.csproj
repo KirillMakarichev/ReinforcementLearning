@@ -4,11 +4,90 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NeuralNetwork" Version="7.4.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="CNTK.GPU" Version="2.7.0"/>
+        <PackageReference Include="NeuralNetwork" Version="7.4.0"/>
+        <PackageReference Include="NeuralNetwork.Backpropagation" Version="1.0.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cuda\2.7.0\support\x64\Dependency\cublas64_100.dll">
+        <Link>CNTK.GPU.lib\cublas64_100.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cuda\2.7.0\support\x64\Dependency\cudart64_100.dll">
+        <Link>CNTK.GPU.lib\cudart64_100.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cuda\2.7.0\support\x64\Dependency\curand64_100.dll">
+        <Link>CNTK.GPU.lib\curand64_100.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cuda\2.7.0\support\x64\Dependency\cusparse64_100.dll">
+        <Link>CNTK.GPU.lib\cusparse64_100.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cuda\2.7.0\support\x64\Dependency\nvml.dll">
+        <Link>CNTK.GPU.lib\nvml.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.cudnn\2.7.0\support\x64\Dependency\cudnn64_7.dll">
+        <Link>CNTK.GPU.lib\cudnn64_7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.mkl\2.7.0\support\x64\Dependency\libiomp5md.dll">
+        <Link>CNTK.GPU.lib\libiomp5md.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.mkl\2.7.0\support\x64\Dependency\mkldnn.dll">
+        <Link>CNTK.GPU.lib\mkldnn.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.mkl\2.7.0\support\x64\Dependency\mklml.dll">
+        <Link>CNTK.GPU.lib\mklml.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.opencv.zip\2.7.0\support\x64\Dependency\Release\opencv_world310.dll">
+        <Link>CNTK.GPU.lib\opencv_world310.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.opencv.zip\2.7.0\support\x64\Dependency\zip.dll">
+        <Link>CNTK.GPU.lib\zip.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.deps.opencv.zip\2.7.0\support\x64\Dependency\zlib.dll">
+        <Link>CNTK.GPU.lib\zlib.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Composite-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Composite-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Core-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Core-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Core.CSBinding-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Core.CSBinding-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Deserializers.Binary-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Deserializers.Binary-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Deserializers.HTK-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Deserializers.HTK-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Deserializers.Image-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Deserializers.Image-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Deserializers.TextFormat-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Deserializers.TextFormat-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.Math-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.Math-2.7.dll</Link>
+      </None>
+      <None Include="..\..\..\.nuget\packages\cntk.gpu\2.7.0\support\x64\Release\Cntk.PerformanceProfiler-2.7.dll">
+        <Link>CNTK.GPU.lib\Cntk.PerformanceProfiler-2.7.dll</Link>
+      </None>
     </ItemGroup>
 
 </Project>

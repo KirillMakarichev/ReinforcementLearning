@@ -1,4 +1,6 @@
-﻿namespace Snake
+﻿using SarsaBrain;
+
+namespace Snake
 {
     public class Game
     {
@@ -10,7 +12,7 @@
         private readonly int _maxFoodForCounting = 2;
         private double _minDistance = int.MaxValue;
         private double _lastDistance = int.MaxValue;
-        private IBrainStatisticsCollector _brainStatisticsCollector;
+        private IBrainStatisticsCollector<Direction> _brainStatisticsCollector;
 
         public IReadOnlyList<Pos> SnakeBody => _snake.SnakeBody;
         public int Score { get; private set; }
@@ -27,10 +29,27 @@
         public Game(int columns, int rows)
         {
             Field = new Field(columns, rows);
-            var deepQBrain = new DeepQBrain();
-            _snake = new Snake(deepQBrain);
+            _snake = new Snake(new ConstantsInitializer()
+            {
+                ExplorationDefault = 1,
+                ExplorationDecay = 0.995,
+                ExplorationMin = 0.01,
+                LearningRate = 0.001,
+                DiscountFactor = 0.999,
+                ReplayMemoryCapacity = 10000,
+                ReplayMemoryMinSize = 200,
+                MiniBatchSize = 256,
+            }, new SarsaBrain.NeuralNetworkSettings()
+            {
+                NumInputs = 33,
+                NumOutputs = 4,
+                NumHiddenLayers = 4,
+                NumNeuronsInHiddenLayer = 25,
+                LearningRate = 0.001
+            });
+            
             Sensors = new List<float>();
-            _brainStatisticsCollector = deepQBrain;
+            _brainStatisticsCollector = _snake;
             RestartGame();
         }
 
@@ -44,9 +63,9 @@
             _nextDirection = direction;
         }
 
-        private List<(double reward, bool isFailed, List<double> sensors)> GetAllPossibleDirections(Pos headPos)
+        private List<(float reward, bool isFailed, List<double> sensors)> GetAllPossibleDirections(Pos headPos)
         {
-            var directions = new List<(double reward, bool isFailed, List<double> sensors)>();
+            var directions = new List<(float reward, bool isFailed, List<double> sensors)>();
 
             foreach (var pos in Pos.Dir4)
             {
@@ -63,24 +82,37 @@
 
         public void Tick(bool isPc)
         {
-            var sensorsBefore = GatherSensors(true, _snake.Head);
-            var potentialDirections = GetAllPossibleDirections(_snake.Head);
-            var chosenDirection = _snake.Brain.DecideAction(potentialDirections, sensorsBefore);
+            var sensorsBefore = GatherSensors(true, _snake.Head).ToArray();
+            var potentialDirections = GetAllPossibleDirections(_snake.Head)
+                .Select(x => new Experience<double[], Direction>()
+                {
+                    Reward = x.reward,
+                    NextState = x.sensors.ToArray(),
+                    Done = x.isFailed
+                }).ToList();
+            var chosenDirection = _snake.DecideAction(potentialDirections, sensorsBefore);
             if (isPc) SetNextDirection(chosenDirection);
 
             var newPosition = GetNewSnakeHeadPos();
             var (isFailed, reward) = MoveSnake(newPosition);
 
-            var sensorsAfter = GatherSensors(!isFailed, _snake.Head);
-            _snake.Brain.DowngradeExploration();
+            var sensorsAfter = GatherSensors(!isFailed, _snake.Head).ToArray();
+            _snake.DowngradeExploration();
 
-            Errors = _snake.Brain.Learn(sensorsBefore, chosenDirection, reward, sensorsAfter, isFailed);
+            Errors = _snake.Learn(new Experience<double[], Direction>()
+            {
+                State = sensorsBefore,
+                Action = chosenDirection, 
+                Reward = reward, 
+                NextState = sensorsAfter, 
+                Done = isFailed
+            });
             _foodHungry--;
             if (!isFailed && _foodHungry > 0) return;
             if (Score > MaxScore) MaxScore = Score;
 
             RestartGame();
-            _snake.Brain.NextEpisode();
+            _snake.NextEpisode();
         }
 
         private (bool isFailed, float reward) MoveSnake(Pos newPosition)
@@ -139,15 +171,6 @@
             return (isFailed, reward);
         }
 
-        public BrainStatistic BrainStatistic()
-        {
-            var statistics = _brainStatisticsCollector.GetStatistics();
-            statistics.FoodHungry = _foodHungry;
-            statistics.FoodCollected = _foodCount;
-            statistics.MaxScore = MaxScore;
-            return statistics;
-        }
-
         private bool IsOppositeDirection(Direction current, Direction next)
         {
             return (current == Direction.Left && next == Direction.Right) ||
@@ -200,7 +223,7 @@
             //reward += -0.25f;
 
             _lastDistance = distanceToFood;
-
+            
             return reward;
         }
 
@@ -316,7 +339,7 @@
             _snake.Create(new Pos(Random.Shared.Next(0, Field.Height - 5),
                 Random.Shared.Next(0, Field.Width)));
 
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 _snake.AddBodyPart(new Pos() { X = 0, Y = 1 });
             }

@@ -1,4 +1,4 @@
-namespace Snake;
+namespace SarsaBrain;
 
 public class NeuralNetworkSettings
 {
