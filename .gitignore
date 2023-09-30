@@ -117,4 +117,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+UpgradeLog.htm
+
 # End of https://www.toptal.com/developers/gitignore/api/rider,windows,dotnetcore
