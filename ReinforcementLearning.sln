@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReinforcementLearning", "ReinforcementLearning\ReinforcementLearning.csproj", "{B55E1FEC-2FC1-491E-B297-224CB81A9EAF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{470A64B5-8C33-4108-803A-FC03056DFA8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SarsaBrain", "SarsaBrain\SarsaBrain.csproj", "{C68E5608-DF11-4594-B0B1-6270B21F77A1}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B55E1FEC-2FC1-491E-B297-224CB81A9EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B55E1FEC-2FC1-491E-B297-224CB81A9EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B55E1FEC-2FC1-491E-B297-224CB81A9EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B55E1FEC-2FC1-491E-B297-224CB81A9EAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU

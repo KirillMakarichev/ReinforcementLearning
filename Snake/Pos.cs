@@ -33,8 +33,8 @@ public struct Pos
     public static bool operator ==(Pos a, Pos b) => a.X == b.X && a.Y == b.Y;
     public static bool operator !=(Pos a, Pos b) => !a.Equals(b);
 
-    public static Pos operator +(Pos a, Pos b) => new Pos(a.Y + b.Y, a.X + b.X);
-    public static Pos operator *(int n, Pos a) => new Pos(n * a.Y, n * a.X);
+    public static Pos operator +(Pos a, Pos b) => new(a.Y + b.Y, a.X + b.X);
+    public static Pos operator *(int n, Pos a) => new(n * a.Y, n * a.X);
 
     public static Pos ConvertFromPoint(Point point, int scalingFactor)
     {
