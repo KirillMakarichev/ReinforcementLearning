@@ -11,17 +11,17 @@ public static class Factories
         ExplorationMin = 0.01,
         LearningRate = 0.001,
         DiscountFactor = 0.999,
-        ReplayMemoryCapacity = 10000,
-        ReplayMemoryMinSize = 200,
-        MiniBatchSize = 1024,
+        ReplayMemoryCapacity = 20000,
+        ReplayMemoryMinSize = 2048,
+        MiniBatchSize = 8192,
     };
 
     private static NeuralNetworkSettings _neuralNetworkSettings = new()
     {
-        NumInputs = 46,
+        NumInputs = 446,
         NumOutputs = 4,
-        NumHiddenLayers = 4,
-        NumNeuronsInHiddenLayer = 25,
+        NumHiddenLayers = 10,
+        NumNeuronsInHiddenLayer = 10,
         LearningRate = _constantsInitializer.LearningRate
     };
     

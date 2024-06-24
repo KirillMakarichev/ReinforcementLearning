@@ -4,6 +4,16 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,6 +21,94 @@
         <PackageReference Include="NeuralNetwork" Version="7.4.0"/>
         <PackageReference Include="NeuralNetwork.Backpropagation" Version="1.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="CNTK\Cntk.Composite-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Composite-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Core-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Core-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Core.CSBinding-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Core.CSBinding-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Deserializers.Binary-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Deserializers.Binary-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Deserializers.HTK-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Deserializers.HTK-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Deserializers.Image-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Deserializers.Image-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Deserializers.TextFormat-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Deserializers.TextFormat-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.Math-2.7.dll"/>
+        <Content Include="CNTK\Cntk.Math-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\Cntk.PerformanceProfiler-2.7.dll"/>
+        <Content Include="CNTK\Cntk.PerformanceProfiler-2.7.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\cublas64_100.dll"/>
+        <Content Include="CNTK\cublas64_100.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\cudart64_100.dll"/>
+        <Content Include="CNTK\cudart64_100.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\curand64_100.dll"/>
+        <Content Include="CNTK\curand64_100.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\cusparse64_100.dll"/>
+        <Content Include="CNTK\cusparse64_100.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\nvml.dll"/>
+        <Content Include="CNTK\nvml.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\opencv_world310.dll"/>
+        <Content Include="CNTK\opencv_world310.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\zip.dll"/>
+        <Content Include="CNTK\zip.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="CNTK\zlib.dll"/>
+        <Content Include="CNTK\zlib.dll">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

@@ -119,26 +119,26 @@ public class Game1 : ScenarioBase<Snake, Direction, SnakeState>
             GetDistanceToFood(state.Head) / (float)Pos.Distance(new Pos(0, 0), new Pos(Field.Width, Field.Height)), 2));
         gatheredSensors.Add(Math.Round(_minDistance / Pos.Distance(new Pos(0, 0), new Pos(Field.Width, Field.Height)), 2));
         
-        // for (int i = 0; i < Field.Width; i++)
-        // {
-        //     for (int j = 0; j < Field.Height; j++)
-        //     {
-        //         var value = new Pos(i, j);
-        //         if (SnakeBody.Contains(value))
-        //         {
-        //             gatheredSensors.Add(value == SnakeBody[0] ? 0.5 : -1);
-        //             continue;
-        //         }
-        //
-        //         if (FoodLocation.Contains(value))
-        //         {
-        //             gatheredSensors.Add(1);
-        //             continue;
-        //         }
-        //
-        //         gatheredSensors.Add(0);
-        //     }
-        // }
+        for (var i = 0; i < Field.Width; i++)
+        {
+            for (var j = 0; j < Field.Height; j++)
+            {
+                var value = new Pos(i, j);
+                if (SnakeBody.Contains(value))
+                {
+                    gatheredSensors.Add(value == Agent.Head ? -0.5 : -1);
+                    continue;
+                }
+        
+                if (FoodLocation.Contains(value))
+                {
+                    gatheredSensors.Add(1);
+                    continue;
+                }
+        
+                gatheredSensors.Add(0);
+            }
+        }
 
         return gatheredSensors.ToArray();
     }
@@ -251,12 +251,12 @@ public class Game1 : ScenarioBase<Snake, Direction, SnakeState>
     {
         var rewardForScore = MathF.Sqrt(Math.Max(Score, MaxScore) - Math.Min(Score, MaxScore) + 1) * 5;
         //var rewardForScore = 7f;
-        if (failed) return (float)(Score <= MaxScore ? -rewardForScore : rewardForScore);
+        if (failed) return (float)(Score <= MaxScore ? -1 : 1);
 
-        if (!ateFood) return distanceToFood < _minDistance ? 1f : -1f;
+        if (!ateFood) return distanceToFood < _minDistance ? 0.3f : -0.3f;
 
-        var ratePosition = MathF.Sqrt(Score + 1) * 3.5f;
-        //var ratePosition = 5f;
+        //var ratePosition = MathF.Sqrt(Score + 1) * 5f;
+        var ratePosition = 1f;
         return ratePosition;
     }
 
@@ -315,7 +315,7 @@ public class Game1 : ScenarioBase<Snake, Direction, SnakeState>
         };
     }
 
-    protected override void NextEpisode()
+    protected sealed override void NextEpisode()
     {
         base.NextEpisode();
         OnGameRestart?.Invoke(Score);

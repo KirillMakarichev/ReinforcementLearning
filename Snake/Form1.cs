@@ -51,7 +51,7 @@ public partial class Form1 : Form
     private async void OnClosing(object? sender, CancelEventArgs e)
     {
         await _game.SaveAsync(
-            $"{DateTime.UtcNow.ToString("MM/dd/yyyy_hh_mm_ss")}_score_{_game.BrainStatistic().MaxScore}.txt");
+            $"{DateTime.UtcNow:MM/dd/yyyy_hh_mm_ss}_score_{_game.BrainStatistic().MaxScore}.txt");
     }
 
     private async void OnLoad(object? sender, EventArgs e)
@@ -74,10 +74,14 @@ public partial class Form1 : Form
 
     private void Form1_KeyPress(object sender, KeyPressEventArgs e)
     {
-        if (e.KeyChar == '=' || e.KeyChar == '+')
+        if (e.KeyChar is '=' or '+')
+        {
             SetSpeed(_snakeSpeed * 1.1f);
-        else if (e.KeyChar == '-' || e.KeyChar == '_')
+        }
+        else if (e.KeyChar is '-' or '_')
+        {
             SetSpeed(_snakeSpeed / 1.1f);
+        }
     }
 
     private void SetSpeed(float speed)
