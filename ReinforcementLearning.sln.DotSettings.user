@@ -1,5 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CDocuments_005CGitHub_005CReinforcementLearning_005CGeometryDashBot_005Cbin_005Cx64_005CDebug_005Cnet7_002E0_002Dwindows_005CInputManager_002Edll/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=f1d5945c_002Dd90e_002D4ddf_002Db22f_002Dc632140984ff_0023ChessTest/@EntryIndexedValue">True</s:Boolean>
-	
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\Кирилл\.nuget\packages\cntk.gpu\2.6.0" Loaded="True" /&gt;&#xD;
+  &lt;PhysicalFolder Path="C:\Users\Кирилл\.nuget\packages\cntk.gpu\2.7.0" Loaded="True" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=backpropagater/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

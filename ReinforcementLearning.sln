@@ -1,21 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33403.182
-MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{470A64B5-8C33-4108-803A-FC03056DFA8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SarsaBrain", "SarsaBrain\SarsaBrain.csproj", "{C68E5608-DF11-4594-B0B1-6270B21F77A1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{52A6D0EF-D696-4CFE-B443-B5ACE92E02E9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snake", "Snake", "{C3F63823-6E85-4DEA-96F4-7D8FF7F9E415}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chess", "Chess", "{78E0D1C0-BD0C-4F21-982B-AB4966C32F45}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessTest", "ChessTest\ChessTest.csproj", "{F1D5945C-D90E-4DDF-B22F-C632140984FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometryDashBot", "GeometryDashBot\GeometryDashBot.csproj", "{61E1FF37-999B-488D-BE91-C06423BF416B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,32 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{470A64B5-8C33-4108-803A-FC03056DFA8F}.Debug|Any CPU.Build.0 = Debug|x64
 		{C68E5608-DF11-4594-B0B1-6270B21F77A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C68E5608-DF11-4594-B0B1-6270B21F77A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C68E5608-DF11-4594-B0B1-6270B21F77A1}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{C68E5608-DF11-4594-B0B1-6270B21F77A1}.Debug|Any CPU.Build.0 = Debug|x64
-		{F1D5945C-D90E-4DDF-B22F-C632140984FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1D5945C-D90E-4DDF-B22F-C632140984FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1D5945C-D90E-4DDF-B22F-C632140984FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1D5945C-D90E-4DDF-B22F-C632140984FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61E1FF37-999B-488D-BE91-C06423BF416B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61E1FF37-999B-488D-BE91-C06423BF416B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61E1FF37-999B-488D-BE91-C06423BF416B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61E1FF37-999B-488D-BE91-C06423BF416B}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A6074293-8E31-42CC-8545-40EDECD82087}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C68E5608-DF11-4594-B0B1-6270B21F77A1} = {52A6D0EF-D696-4CFE-B443-B5ACE92E02E9}
-		{470A64B5-8C33-4108-803A-FC03056DFA8F} = {C3F63823-6E85-4DEA-96F4-7D8FF7F9E415}
-		{F1D5945C-D90E-4DDF-B22F-C632140984FF} = {78E0D1C0-BD0C-4F21-982B-AB4966C32F45}
 	EndGlobalSection
 EndGlobal

@@ -122,22 +122,13 @@ public abstract class AgentBase<TAction, TState> : IBrain<double[], TAction>
         var errors = new List<double[]>();
         foreach (var e in miniBatch)
         {
-            // var nextQValues = NeuralNetwork.Predict(e.NextState.ToArray());
-            //
-            // var updatedQValues = UpdateQValues(qValues, nextQValues, e);
-            //
-            // var errorsExp = NeuralNetwork.Train(e.State.ToArray(), updatedQValues);
-            // errors.Add(errorsExp);
             var qValues = NeuralNetwork.Predict(e.State);
-            var nextState = e.NextState;
-            var nextStateQ = NeuralNetwork.Predict(nextState);
-            
-            var action = e.Action;
-            var reward = e.Reward;
 
-            var actionIndex = ConvertActionToInt(action);
-            qValues[actionIndex] = reward + ConstantsInitializer.DiscountFactor * nextStateQ.Max();
-            var errorsExp = NeuralNetwork.Train(e.State, qValues);
+            var nextQValues = NeuralNetwork.Predict(e.NextState.ToArray());
+            
+            var updatedQValues = UpdateQValues(qValues, nextQValues, e);
+            
+            var errorsExp = NeuralNetwork.Train(e.State.ToArray(), updatedQValues);
             errors.Add(errorsExp);
         }
 
@@ -156,7 +147,7 @@ public abstract class AgentBase<TAction, TState> : IBrain<double[], TAction>
         ReplayMemory.AddExperience(experience);
     }
     
-    protected virtual double[] UpdateQValues(double[] qValues, double[] nextQValues, Experience<List<double>, TAction> e)
+    protected virtual double[] UpdateQValues(double[] qValues, double[] nextQValues, Experience<double[], TAction> e)
     {
         var action = ConvertActionToInt(e.Action);
         var target = e.Reward + ConstantsInitializer.DiscountFactor * nextQValues.Max();

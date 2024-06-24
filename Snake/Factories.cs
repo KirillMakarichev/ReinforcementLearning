@@ -11,9 +11,9 @@ public static class Factories
         ExplorationMin = 0.01,
         LearningRate = 0.001,
         DiscountFactor = 0.999,
-        ReplayMemoryCapacity = 2000,
-        ReplayMemoryMinSize = 200,
-        MiniBatchSize = 512,
+        ReplayMemoryCapacity = 20000,
+        ReplayMemoryMinSize = 2048,
+        MiniBatchSize = 8192,
     };
 
     private static NeuralNetworkSettings _neuralNetworkSettings = new()
@@ -27,7 +27,7 @@ public static class Factories
     
     public static Game1 CreateGame(int rows, int columns)
     {
-        var snake = new Snake(_constantsInitializer, _neuralNetworkSettings, new GpuNeuralNetwork(_neuralNetworkSettings));
+        var snake = new Snake(_constantsInitializer, _neuralNetworkSettings, new SarsaBrain.ArtificialNeuralNetwork(_neuralNetworkSettings));
         return new Game1(rows: rows, columns: columns, snake: snake, brainStatisticsCollector: snake);
     }
 
